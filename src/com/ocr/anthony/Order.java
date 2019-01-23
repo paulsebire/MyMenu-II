@@ -40,40 +40,16 @@ public class Order {
             nbMenu = sc.nextInt();
             this.displaySelectedMenu(nbMenu);
             switch (nbMenu) {
-
                 case 1:
-                    displayAvailableSide(true);
-                    int nbSide;
-                    do {
-                        nbSide = sc.nextInt();
-                        displaySelectedSide(nbSide,  true);
-                    }while (nbSide < 1  || nbSide > 3);
-                        displayAvailableDrink();
-                        int nbDrink;
-                     do {
-                         nbDrink = sc.nextInt();
-                         displaySelectedDrink(nbDrink);
-                     }while (nbDrink < 1 || nbDrink > 3);
-                        break;
-
+                    askSide(true);
+                    askDrink();
+                    break;
                 case 2:
-                    displayAvailableSide(true);
-                    do {
-                        nbSide = sc.nextInt();
-                        displaySelectedSide(nbSide,  true);
-                    }while (nbSide < 1  || nbSide > 3);
+                    askSide(true);
                     break;
                 case 3:
-                    displayAvailableSide(false);
-                    do {
-                        nbSide = sc.nextInt();
-                        displaySelectedSide(nbSide,  false);
-                    }while (nbSide < 1  || nbSide > 2);
-                    displayAvailableDrink();
-                    do {
-                        nbDrink = sc.nextInt();
-                        displaySelectedDrink(nbDrink);
-                    }while (nbDrink < 1 || nbDrink > 3);
+                    askSide(false);
+                    askDrink();
                     break;
 
             }
@@ -179,5 +155,33 @@ switch (nbDrink){
         System.out.println("2 - eau gazeuse");
         System.out.println("3 - soda");
         System.out.println("Que souhaitez-vous comme boisson ?");
+    }
+
+
+    /**
+     * Display a question about menu in the standard input, get response and display it
+     */
+    public void askMenu() {
+        String[] menus = {"poulet", "boeuf", "végétarien"};
+        askSomething("menu", menus);
+    }
+    /**
+     * Display a question about side in the standard input, get response and display it
+     */
+    public void askSide(boolean allSidesEnable) {
+        if (allSidesEnable) {
+            String[] responsesAllSide = {"légumes frais", "frites", "riz"};
+            askSomething("accompagnement", responsesAllSide);
+        } else {
+            String[] responsesOnlyRice = {"riz", "pas de riz"};
+            askSomething("accompagnement", responsesOnlyRice);
+        }
+    }
+    /**
+     * Display a question about drink in the standard input, get response and display it
+     */
+    public void askDrink() {
+        String[] responsesDrink = {"eau plate", "eau gazeuse", "soda"};
+        askSomething("boisson", responsesDrink);
     }
 }
